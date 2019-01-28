@@ -3,18 +3,9 @@ import PropTypes from 'prop-types';
 
 
 export class TodoItem extends Component {
+    //method will set style
+    //if completed, set linethrough
     getStyle = () => {
-        /*
-        if (this.props.todo.completed) {
-            return {
-                textDecoration: 'line-through'
-            }
-        } else {
-            return {
-                textDecoration: 'none'
-            }
-        }
-        */
         return {
             background: '$f4f4f4',
             padding: '10px',
@@ -25,9 +16,16 @@ export class TodoItem extends Component {
     }
 
     render() {
+        //get id and title from this.props.todo
+        const { id, title } = this.props.todo;
         return (
             <div style={this.getStyle()}>
-                <p>{this.props.todo.title}</p>
+                <p>
+                    {/*call markComplete prop from Todos.js */}
+                    {/*bind will pass id up to Todos.js->App.js*/}
+                    <input type="checkbox" onChange={this.props.markComplete.bind(this, id)} /> {' '}
+                    {title}
+                </p>
             </div>
         )
     }

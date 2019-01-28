@@ -23,14 +23,35 @@ class App extends Component {
       }
     ]
   }
+
+  /**
+   * this method gets id form TodoItem.js
+   * and matches the id with the current state id
+   * 
+   * if todo.id === id, toggle completed
+   * @param id
+   * @return todo
+   */
+  markComplete = (id) => {
+    this.setState({
+      todos: this.state.todos.map(todo => {
+        if (todo.id === id) {
+          todo.completed = !todo.completed
+        }
+        return todo;
+      })
+    });
+  }
+
   //render component
   render() {
     //console.log(this.state.todos);
     return (
       <div className="App">
         {/*imbed component
-        pass todos state to Todos comp as a prop*/}
-        <Todos todos={this.state.todos} />
+        pass todos state to Todos comp as a prop
+        set markComplete prop to call markComplete function*/}
+        <Todos todos={this.state.todos} markComplete={this.markComplete} />
       </div>
     );
   }
