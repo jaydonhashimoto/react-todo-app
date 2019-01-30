@@ -43,6 +43,18 @@ class App extends Component {
     });
   }
 
+  /**
+   * delete todo
+   * 
+   * filter loops through and returns another array
+   * ... == spread operator, copies everything already there
+   * for each todo, filter out any todo that doesnt equal given id
+   * @param id
+   */
+  delTodo = (id) => {
+    this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)] });
+  }
+
   //render component
   render() {
     //console.log(this.state.todos);
@@ -51,7 +63,7 @@ class App extends Component {
         {/*imbed component
         pass todos state to Todos comp as a prop
         set markComplete prop to call markComplete function*/}
-        <Todos todos={this.state.todos} markComplete={this.markComplete} />
+        <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo} />
       </div>
     );
   }
