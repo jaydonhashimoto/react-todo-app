@@ -6,7 +6,7 @@ import AddTodo from './components/AddTodo';
 import About from './components/pages/About';
 //axios will mimic a http request
 import axios from 'axios';
-//import uuid from 'uuid';
+import uuid from 'uuid';
 
 import './App.css';
 
@@ -55,7 +55,7 @@ class App extends Component {
    * add todo
    */
   addTodo = (title) => {
-    axios.post('https://jsonplaceholder.typicode.com/todos', { title: title, completed: false }).then(res => this.setState({ todos: [...this.state.todos, res.data] }));
+    axios.post('https://jsonplaceholder.typicode.com/todos', { title: title, completed: false }).then(res => this.setState({ todos: [...this.state.todos, { id: uuid.v4(), title: title, complete: false }] }));
   }
 
   //render component
